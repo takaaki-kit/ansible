@@ -1,0 +1,8 @@
+- name: Install zsh
+  apt: name=zsh 
+
+- name: Install zshrc from Github
+  git: repo=git@github.com:takaaki-kit/dotfiles.git dest=/workspace accept_hostkey=yes
+
+- name: Set zsh to default shell
+  shell: chsh -s /usr/bin/zsh
