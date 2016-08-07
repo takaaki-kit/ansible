@@ -1,2 +1,47 @@
-- name: Install tmux
-  apt: name=tmux;
+- name: install tmux dependencies
+  become: yes
+  apt: name={{ item }}
+       install_recommends=no
+       update_cache=yes
+       state=present
+  with_items:
+    - libevent-dev
+    - ncurses-dev
+    - build-essential
+    - automake
+    - pkg-config
+
+- name: remove tmux src's dir if exists
+  become: yes
+  file: path=/usr/local/src/tmux
+        state=absent
+
+- name: git clone tmux
+  become: yes
+  command: git clone https://github.com/tmux/tmux.git
+  args:
+    chdir: /usr/local/src/
+
+- name: autogen.sh
+  become: yes
+  command: ./autogen.sh
+  args:
+      chdir: /usr/local/src/tmux/
+
+- name: configure tmux
+  become: yes
+  command: ./configure --prefix=/usr/local
+  args:
+    chdir: /usr/local/src/tmux/
+
+- name: build tmux
+  become: yes
+  command: make
+  args:
+    chdir: /usr/local/src/tmux/
+
+- name: install tmux
+  become: yes
+  command: make install
+  args:
+    chdir: /usr/local/src/tmux/

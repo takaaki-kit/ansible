@@ -1,0 +1,11 @@
+- name: Clone NeoBundle
+  git: repo=https://github.com/Shougo/neobundle.vim dest=~/.vim/bundle/neobundle.vim
+
+- name: Install NeoBundle
+  command: ~/.vim/bundle/neobundle.vim/bin/neoinstall
+
+- name: Install Molokai
+  git: repo=https://github.com/tomasr/molokai dest=~/workspace/molokai
+
+- name: cp Molokai to ~/.vim
+  shell: cp -r ~/workspace/molokai/colors ~/.vim/

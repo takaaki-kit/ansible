@@ -1,0 +1,11 @@
+- name: Install zshrc, vimrc from Github
+  git: repo=https://github.com/takaaki-kit/dotfiles.git dest=~/dotfiles accept_hostkey=yes
+
+- name: symlink vimrc
+  file: src=/root/dotfiles/.vimrc dest=/root/.vimrc state=link
+
+- name: symlink zshrc
+  file: src=/root/dotfiles/.zshrc dest=/root/.zshrc state=link
+
+- name: symlink tmux.conf
+  file: src=/root/dotfiles/.tmux.conf dest=/root/.tmux.conf state=link

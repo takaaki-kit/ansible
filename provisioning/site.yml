@@ -4,3 +4,9 @@
   roles:
     - git
     - zsh
+    - clone
+    - vim
+    - tmux
+    - anyenv
+    - peco
+    - ag

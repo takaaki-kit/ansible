@@ -1,0 +1,8 @@
+- name: wget peco
+  shell: wget https://github.com/peco/peco/releases/download/v0.2.11/peco_linux_386.tar.gz -P ~/workspace
+
+- name: tar peco
+  shell: tar xvzf ~/workspace/peco_linux_386.tar.gz -C ~/workspace/
+
+- name: mv peco
+  shell: mv ~/workspace/peco_linux_386/peco /usr/local/bin
